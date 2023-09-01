@@ -1,0 +1,18 @@
+h1, h2, h3, h4, h5, h6, p, body {
+    margin:0;
+    padding:0;
+    font: inherit;/*goes to basic font*/
+}
+
+body {
+    background-color: yellow;
+} /*type "bc" for background color shortcut*/
+
+.overlay {
+    background: limegreen;
+    display: none; /*the limegreen background disappears*/
+}
+
+.overlay.active {
+    display: block;
+}
