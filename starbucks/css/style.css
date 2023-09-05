@@ -4,15 +4,41 @@ h1, h2, h3, h4, h5, h6, p, body {
     font: inherit;/*goes to basic font*/
 }
 
+:root{
+    --starbucks-green: #006241; /* -- is for syntex to make it work */
+}
+
 body {
     background-color: yellow;
 } /*type "bc" for background color shortcut*/
 
 .overlay {
-    background: limegreen;
-    display: none; /*the limegreen background disappears*/
+    background: var(--starbucks-green);
+    width: 100vw;
+    height: 100vh; /*vw= viewport width & vh= viewport height viewport is part of measurement */
+    /*display: none; /*the limegreen background disappears*/
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    z-index: 1000;/*it moves 1000 layers above- it risks unexpected layers come on the top*/
+    transition-property: all;
+    transition-duration: .5s;
+    /* transition-delay: 5s; /*appears 5sec after */
+    
 }
 
 .overlay.active {
-    display: block;
+    left: 0;
+    /*display: block; */
+    
+}
+
+h1 {
+    font-size: 36px;
+    color: var(--starbucks-green); /*var is good for use colors or redundant measurement */
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
 }

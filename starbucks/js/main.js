@@ -13,11 +13,16 @@ console.log(introduction);
 
 //2. methods
 const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
 const overlay = document.getElementById("overlay");
-console.log(menuBtn);
+//console.log(menuBtn);
 
 // "event name", callback function
 menuBtn.addEventListener("click", function() {
     //console.log("menu button has been clicked");
-    overlay.classList.add("active");
+    overlay.classList.add("active"); //u can use toggle but not encourage to use
 }); //end of menuBtn click event
+
+closeBtn.addEventListener("click", function() {
+    overlay.classList.remove("active");
+}); //end of closeBtn click event
