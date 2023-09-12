@@ -6,6 +6,10 @@ h1, h2, h3, h4, h5, h6, p, body, ul, li {
 ul, li {
     list-style: none; /* removes bullets */
 }
+
+* { /* everysingle part of arugment will padding */
+    box-sizing: border-box; /*invert padding*/
+}
 :root{
     --starbucks-green: #006241; /* -- is for syntex to make it work */
     --medium-gray: rgba(0,0,0,.58);
@@ -27,7 +31,11 @@ body {
     transition-property: all;
     transition-duration: .5s;
     /* transition-delay: 5s; /*appears 5sec after */
-    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/ 
+    padding: 2rem;
 }
 
 .overlay.active {
@@ -42,23 +50,66 @@ h1 {
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 8rem;
+    height: auto;
+    margin-bottom: 2rem;
+    position: relative;
+    left: -1rem;
+    opacity: 0;
+    transition-property: all;
+    transition-delay: .25s;
+    transition-duration: .5;
 }
 .mobile-nav {
    /* background-color: yellow;*/
-   padding: 1rem;
+   /*padding: 1rem;*/
 }
 .mobile-nav a {
     font-family: Arial;
-    font-size:  1rem;
+    font-size:  2rem;
     font-weight:  bold;
     color: white;
     text-decoration: none;
     display: block;
-    padding-top: .5rem 1rem;
-    padding-bottom: .5rem;
+    padding: 1rem 0;
     text-decoration: none;
+
+}
+.mobile-nav ul li {
+    position: relative; /*stay where you are, without relative, it doesn't know what to do with location like left*/
+    left: -1rem;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+.overlay.active .mobile-nav ul li {
+    /*background-color:red;*/
+    opacity: 1;
+    left: 0;
+}
+.overlay.active .mobile-nav ul li:nth-child(1) {
+    
+    transition-delay: .5s;
+    
+}
+
+.overlay.active .mobile-nav ul li:nth-child(2) {
+    
+    transition-delay: .6s;
+    
+}
+
+.overlay.active .mobile-nav ul li:nth-child(3) {
+    
+    transition-delay: .7s;
+    
+}
+
+.overlay.active .logo {
+    left:0;
+    opacity: 1;
+    
 
 }
 .btn-ui {
