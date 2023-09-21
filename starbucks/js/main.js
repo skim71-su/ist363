@@ -15,6 +15,9 @@ console.log(introduction);
 const menuBtn = document.getElementById("menuBtn");
 const closeBtn = document.getElementById("closeBtn");
 const overlay = document.getElementById("overlay");
+const coffeeList = document.getElementById("coffeeList");
+const ascendingBtn = document.getElementById("ascendingBtn");
+const descendingBtn = document.getElementById("descendingBtn");
 //console.log(menuBtn);
 
 // "event name", callback function
@@ -27,6 +30,25 @@ closeBtn.addEventListener("click", function() {
     overlay.classList.remove("active");
 }); //end of closeBtn click event
 
+function purgeList() {
+    coffeeList.innerHTML = "";
+
+}
+function sortList(sortDirection) {
+    console.log({sortDirection});
+}
+
+ascendingBtn.addEventListener("click", function() {
+   // console.log("ascending button has been clicked");
+   purgeList();
+   sortList("ascending");
+});
+
+descendingBtn.addEventListener("click", function() {
+   // console.log("descending button has been clicked");
+   purgeList();
+   sortList("descending");
+});
 // arrays and objects
 
 // basic variables
@@ -98,7 +120,20 @@ function buildTextElement(element, className, content) {
     return newElement;
 }
 
-coffees.forEach(function(coffee) { //forEach is for especially for arrays
+const sortedCoffees = [...coffees].sort(function(a,b) {
+    if (a.title < b.title) {
+        return -1
+    }
+    if (a.title > b.title) {
+        return 1;
+    }
+    if (a.title===b.title) {
+        return 0;
+    }
+});//sort method end
+
+
+sortedCoffees.forEach(function(coffee) { //forEach is for especially for arrays
  // deconstruct the coffee object
     const { title, price, description, image } = coffee; //converting to local variable
 //2. create the html elements
@@ -106,7 +141,7 @@ coffees.forEach(function(coffee) { //forEach is for especially for arrays
     coffeeArticle.classList.add("coffee-item");
 
     const coffeeImage = document.createElement("img");
-   // coffeeImage.src = `images/${image.fileName}`;
+    coffeeImage.src = `images/${image.fileName}`;
     coffeeImage.width= image.width;
     coffeeImage.height=image.height;
     coffeeImage.alt=image.altText;
@@ -128,12 +163,12 @@ coffees.forEach(function(coffee) { //forEach is for especially for arrays
     const coffeeDes = buildTextElement("p", "coffee-des", description );
 
 //append the elemetns to the parent article
-   // coffeeArticle.appendChild(coffeeImage);
+    coffeeArticle.appendChild(coffeeImage);
     coffeeArticle.appendChild(coffeeTitle);
     coffeeArticle.appendChild(coffeePrice);
     coffeeArticle.appendChild(coffeeDes);
 //append the article to the body
-    document.body.appendChild(coffeeArticle);
+    coffeeList.appendChild(coffeeArticle);
 }); // end of coffees forEach method - you can iterate using arrays
 
 
