@@ -171,4 +171,3 @@ sortedCoffees.forEach(function(coffee) { //forEach is for especially for arrays
     coffeeList.appendChild(coffeeArticle);
 }); // end of coffees forEach method - you can iterate using arrays
 
-
