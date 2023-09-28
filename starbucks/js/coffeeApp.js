@@ -6,7 +6,9 @@ const descendingBtn = document.getElementById("descendingBtn");
 const coffeeList = document.getElementById("coffeeList");
 const priceRanges = document.getElementById("priceRanges");
 
-
+let filteredCoffees = [...coffees];
+let sortDirection = "ascending";
+//2. function
 const purgeList = () => {
     coffeeList.innerHTML = "";
 
@@ -26,16 +28,23 @@ const sortListByDirect = (direction, arr) => {
     });
     return sortedListArr;
 }
-function buildTextElement(element, className, content) {
+const buildTextElement = (element, className, content) => {
     const newElement = document.createElement(element);
     newElement.classList.add(className);
     newElement.textContent = content;
     return newElement;
 }
-
+const getFilteredCoffees = (minVal, maxVal) => {
+    const filteredArr = coffees.filter((coffee) => {
+        const { price } = coffee;
+        return price >= minVal && price <= maxVal;
+    });
+    return filteredArr;
+ };
 
 
 const displayList = (arr) => {
+    purgeList();
     arr.forEach((coffee) =>{ //forEach is for especially for arrays
         // deconstruct the coffee object
            const { title, price, description, image } = coffee; //converting to local variable
@@ -66,19 +75,19 @@ const displayList = (arr) => {
 } // idsplayList function end
 
 
-// 2. create event listeners for the buttons
+// 3. create event listeners for the buttons
 ascendingBtn.addEventListener("click", function() {
      console.log("ascending button has been clicked");
-     purgeList();
-     const sortedList = sortListByDirect("ascending", coffees);
+     //purgeList();
+     const sortedList = sortListByDirect("ascending", filteredCoffees);
     //console.log({sortedList})
     displayList(sortedList);
 });
  
  descendingBtn.addEventListener("click", function() {
      console.log("descending button has been clicked");
-     purgeList();
-     const sortedList = sortListByDirect("descending", coffees);
+     //purgeList();
+     const sortedList = sortListByDirect("descending", filteredCoffees);
      displayList(sortedList);
      //console.log({sortedList})
  });
@@ -89,29 +98,25 @@ ascendingBtn.addEventListener("click", function() {
     const selectedRange = event.target.value;
 
     if (selectedRange === "all") {
-        purgeList();
-        displayList(coffees);
+        //purgeList();
+        //displayList(coffees);
+        filteredCoffees = sortListByDirect(sortDirection, [...coffees]);
     } else {
          // "2-3" becomes [2,3]
         const [minVal, maxVal] = selectedRange.split("-")
         console.log({minVal, maxVal});
 
-        const filteredCoffees = filterCoffees(minVal, maxVal);
+        const tempFilteredCoffees = getFilteredCoffees(minVal, maxVal);
+        filteredCoffees = sortListByDirect(sortDirection, tempFilteredCoffees);
 
-        purgeList();
-        displayList(filteredCoffees);
+        //purgeList();
+        
     }//end of conditional
-   
+    displayList(filteredCoffees);
  });// end of priceRanges change event
 
- const filterCoffees = (minVal, maxVal) => {
-    const filteredArr = coffees.filter((coffee) => {
-        const { price } = coffee;
-        return price >= minVal && price <= maxVal
-    });
-    return filteredArr;
- };
-
- displayList(coffees);
+//4. initialization
+ const sortedStarterList = sortListByDirect(sortDirection, filteredCoffees);
+ displayList(sortedStarterList);
 
 
