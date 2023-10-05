@@ -1,0 +1,26 @@
+@use "../abstracts/mixins";
+
+
+
+header {
+    background-color: teal;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    h1 {
+        @include mixins.buildFontProperties(6rem, red , Arial);
+        /*color: var(--starbucks-green); /*var is good for use colors or redundant measurement */
+        
+    }
+    .btn {
+        background-color: pink;
+        padding:1rem;
+        border: 0;
+        &:hover {
+            background-color: red;
+        }
+        &.active{
+            background-color: yellow;
+        }
+    }
+    
+}

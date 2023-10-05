@@ -1,0 +1,12 @@
+h1, h2, h3, h4, h5, h6, p, body, ul, li {
+    margin:0;
+    padding:0;
+    font: inherit;/*goes to basic font*/
+}
+ul, li {
+    list-style: none; /* removes bullets */
+}
+
+* { /* everysingle part of arugment will padding */
+    box-sizing: border-box; /*invert padding*/
+}

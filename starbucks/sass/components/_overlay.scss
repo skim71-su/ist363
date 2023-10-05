@@ -1,0 +1,92 @@
+.overlay {
+    background: var(--starbucks-green);
+    width: 100vw;
+    height: 100vh; /*vw= viewport width & vh= viewport height viewport is part of measurement */
+    /*display: none; /*the limegreen background disappears*/
+    position: fixed;
+    top: 0;
+    left: -100vw;
+    z-index: 1000;/*it moves 1000 layers above- it risks unexpected layers come on the top*/
+    transition-property: all;
+    transition-duration: .5s;
+    /* transition-delay: 5s; /*appears 5sec after */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/ 
+    padding: 2rem;
+}
+
+.overlay.active {
+    left: 0;
+    /*display: block; */
+    
+}
+
+
+
+
+
+.logo {
+    width: 8rem;
+    height: auto;
+    margin-bottom: 2rem;
+    position: relative;
+    left: -1rem;
+    opacity: 0;
+    transition-property: all;
+    transition-delay: .25s;
+    transition-duration: .5;
+}
+.mobile-nav {
+   /* background-color: yellow;*/
+   /*padding: 1rem;*/
+}
+.mobile-nav a {
+    font-family: Arial;
+    font-size:  2rem;
+    font-weight:  bold;
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 1rem 0;
+    text-decoration: none;
+
+}
+.mobile-nav ul li {
+    position: relative; /*stay where you are, without relative, it doesn't know what to do with location like left*/
+    left: -1rem;
+    opacity: 0;
+    transition-property: all;
+    transition-duration: .5s;
+}
+
+.overlay.active .mobile-nav ul li {
+    /*background-color:red;*/
+    opacity: 1;
+    left: 0;
+}
+.overlay.active .mobile-nav ul li:nth-child(1) {
+    
+    transition-delay: .5s;
+    
+}
+
+.overlay.active .mobile-nav ul li:nth-child(2) {
+    
+    transition-delay: .6s;
+    
+}
+
+.overlay.active .mobile-nav ul li:nth-child(3) {
+    
+    transition-delay: .7s;
+    
+}
+
+.overlay.active .logo {
+    left:0;
+    opacity: 1;
+    
+
+}
