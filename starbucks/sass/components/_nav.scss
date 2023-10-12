@@ -1,0 +1,10 @@
+@use '../abstracts/mixins';
+
+.nav-desktop {
+    background-color: limegreen;
+    display: none;
+    @include mixins.breakpoint(md) {
+        display: block;
+    }
+    
+}

@@ -325,113 +325,6 @@ body {
   background-color: #f94f1a;
   font-family: Arial, Verdana, sans-serif;
 } /*type "bc" for background color shortcut*/
-.overlay {
-  background: var(--starbucks-green);
-  width: 100vw;
-  height: 100vh; /*vw= viewport width & vh= viewport height viewport is part of measurement */
-  /*display: none; /*the limegreen background disappears*/
-  position: fixed;
-  top: 0;
-  left: -100vw;
-  z-index: 1000; /*it moves 1000 layers above- it risks unexpected layers come on the top*/
-  transition-property: all;
-  transition-duration: 0.5s;
-  /* transition-delay: 5s; /*appears 5sec after */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /*align-items: center;*/
-  padding: 2rem;
-}
-
-.overlay.active {
-  left: 0;
-  /*display: block; */
-}
-
-.logo {
-  width: 8rem;
-  height: auto;
-  margin-bottom: 2rem;
-  position: relative;
-  left: -1rem;
-  opacity: 0;
-  transition-property: all;
-  transition-delay: 0.25s;
-  transition-duration: 0.5;
-}
-
-.mobile-nav {
-  /* background-color: yellow;*/
-  /*padding: 1rem;*/
-}
-
-.mobile-nav a {
-  font-family: Arial;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 1rem 0;
-  text-decoration: none;
-}
-
-.mobile-nav ul li {
-  position: relative; /*stay where you are, without relative, it doesn't know what to do with location like left*/
-  left: -1rem;
-  opacity: 0;
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
-.overlay.active .mobile-nav ul li {
-  /*background-color:red;*/
-  opacity: 1;
-  left: 0;
-}
-
-.overlay.active .mobile-nav ul li:nth-child(1) {
-  transition-delay: 0.5s;
-}
-
-.overlay.active .mobile-nav ul li:nth-child(2) {
-  transition-delay: 0.6s;
-}
-
-.overlay.active .mobile-nav ul li:nth-child(3) {
-  transition-delay: 0.7s;
-}
-
-.overlay.active .logo {
-  left: 0;
-  opacity: 1;
-}
-
-/*creating own custome function-- see @include in h1*/
-header {
-  background-color: teal;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-header h1 {
-  font-size: 6rem;
-  color: red;
-  font-family: Arial;
-  /*color: var(--starbucks-green); /*var is good for use colors or redundant measurement */
-}
-header .btn {
-  background-color: pink;
-  padding: 1rem;
-  border: 0;
-}
-header .btn:hover {
-  background-color: red;
-}
-header .btn.active {
-  background-color: yellow;
-}
-
 .btn-ui {
   background-color: white;
   border: 0;
@@ -483,6 +376,127 @@ header .btn.active {
   font-weight: normal;
   font-family: Arial;
   color: black;
+}
+
+.logo {
+  width: 5rem;
+  height: auto;
+}
+
+/*creating own custome function-- see @include in h1*/
+.nav-desktop {
+  background-color: limegreen;
+  display: none;
+}
+@media (min-width: 980px) {
+  .nav-desktop {
+    display: block;
+  }
+}
+
+.overlay {
+  background: var(--starbucks-green);
+  width: 100vw;
+  height: 100vh; /*vw= viewport width & vh= viewport height viewport is part of measurement */
+  /*display: none; /*the limegreen background disappears*/
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  z-index: 1000; /*it moves 1000 layers above- it risks unexpected layers come on the top*/
+  transition-property: all;
+  transition-duration: 0.5s;
+  /* transition-delay: 5s; /*appears 5sec after */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*align-items: center;*/
+  padding: 2rem;
+}
+.overlay .logo {
+  width: 8rem;
+  height: auto;
+  margin-bottom: 2rem;
+  position: relative;
+  left: -1rem;
+  opacity: 0;
+  transition-property: all;
+  transition-delay: 0.25s;
+  transition-duration: 0.5;
+}
+
+.overlay.active {
+  left: 0;
+  /*display: block; */
+}
+
+.mobile-nav {
+  /* background-color: yellow;*/
+  /*padding: 1rem;*/
+}
+
+.mobile-nav a {
+  font-family: Arial;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 1rem 0;
+  text-decoration: none;
+}
+
+.mobile-nav ul li {
+  position: relative; /*stay where you are, without relative, it doesn't know what to do with location like left*/
+  left: -1rem;
+  opacity: 0;
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+.overlay.active .mobile-nav ul li {
+  /*background-color:red;*/
+  opacity: 1;
+  left: 0;
+}
+
+.overlay.active .mobile-nav ul li:nth-child(1) {
+  transition-delay: 0.5s;
+}
+
+.overlay.active .mobile-nav ul li:nth-child(2) {
+  transition-delay: 0.6s;
+}
+
+.overlay.active .mobile-nav ul li:nth-child(3) {
+  transition-delay: 0.7s;
+}
+
+.overlay.active .logo {
+  left: 0;
+  opacity: 1;
+}
+
+header {
+  background-color: teal;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+header h1 {
+  font-size: 6rem;
+  color: red;
+  font-family: Arial;
+  /*color: var(--starbucks-green); /*var is good for use colors or redundant measurement */
+}
+header .btn {
+  background-color: pink;
+  padding: 1rem;
+  border: 0;
+}
+header .btn:hover {
+  background-color: red;
+}
+header .btn.active {
+  background-color: yellow;
 }
 
 /*# sourceMappingURL=style.css.map */
