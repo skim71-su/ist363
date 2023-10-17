@@ -1,10 +1,25 @@
 @use '../abstracts/mixins';
 
-.nav-desktop {
-    background-color: limegreen;
-    display: none;
-    @include mixins.breakpoint(md) {
-        display: block;
+.nav {
+    background-color: pink;
+    &.nav--desktop {
+        display: none;
+        @include mixins.breakpoint(laptop) {
+            display: block;
+        }
     }
-    
+    &__list {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+    }
+    &__item {
+        a {
+            font-family: Arial;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+    }
 }
