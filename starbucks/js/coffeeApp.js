@@ -1,6 +1,10 @@
 // console.log("coffeeApp!");
 
 // 1. Create variabels for the buttons
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+const overlay = document.getElementById("overlay");
+
 const ascendingBtn = document.getElementById("ascendingBtn");
 const descendingBtn = document.getElementById("descendingBtn");
 const coffeeList = document.getElementById("coffeeList");
@@ -76,6 +80,15 @@ const displayList = (arr) => {
 
 
 // 3. create event listeners for the buttons
+menuBtn.addEventListener("click", function() {
+    //console.log("menu button has been clicked");
+    overlay.classList.add("active"); //u can use toggle but not encourage to use
+}); //end of menuBtn click event
+
+closeBtn.addEventListener("click", function() {
+    overlay.classList.remove("active");
+}); //end of closeBtn click event
+
 ascendingBtn.addEventListener("click", function() {
      console.log("ascending button has been clicked");
      //purgeList();

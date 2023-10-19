@@ -408,28 +408,46 @@ body {
 .nav {
   background-color: pink;
 }
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav__link {
+  font-family: Arial;
+  font-weight: bold;
+  text-decoration: none;
+}
 .nav.nav--desktop {
   display: none;
+}
+.nav.nav--desktop .nav__link {
+  color: black;
+  text-transform: uppercase;
 }
 @media (min-width: 980px) {
   .nav.nav--desktop {
     display: block;
   }
 }
-.nav__list {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.nav.nav--mobile {
+  background-color: blue;
 }
-.nav__item a {
-  font-family: Arial;
-  font-weight: bold;
-  color: black;
-  text-decoration: none;
+.nav.nav--social {
+  background-color: orange;
+}
+.nav.nav--social .nav__link {
+  color: white;
+}
+.nav.nav--footer {
+  background-color: red;
+}
+.nav.nav--footer .nav__link {
+  color: white;
 }
 
 .overlay {
-  background: var(--starbucks-green);
+  background: #006341;
   width: 100vw;
   height: 100vh; /*vw= viewport width & vh= viewport height viewport is part of measurement */
   /*display: none; /*the limegreen background disappears*/
@@ -463,45 +481,21 @@ body {
   /*display: block; */
 }
 
-.mobile-nav {
-  /* background-color: yellow;*/
-  /*padding: 1rem;*/
-}
-
-.mobile-nav a {
-  font-family: Arial;
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 1rem 0;
-  text-decoration: none;
-}
-
-.mobile-nav ul li {
-  position: relative; /*stay where you are, without relative, it doesn't know what to do with location like left*/
-  left: -1rem;
-  opacity: 0;
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
-.overlay.active .mobile-nav ul li {
+.overlay.active .nav--mobile ul li {
   /*background-color:red;*/
   opacity: 1;
   left: 0;
 }
 
-.overlay.active .mobile-nav ul li:nth-child(1) {
+.overlay.active .nav--mobile ul li:nth-child(1) {
   transition-delay: 0.5s;
 }
 
-.overlay.active .mobile-nav ul li:nth-child(2) {
+.overlay.active .nav--mobile ul li:nth-child(2) {
   transition-delay: 0.6s;
 }
 
-.overlay.active .mobile-nav ul li:nth-child(3) {
+.overlay.active .nav--mobile ul li:nth-child(3) {
   transition-delay: 0.7s;
 }
 
