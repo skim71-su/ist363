@@ -321,31 +321,97 @@ ul, li {
   box-sizing: border-box; /*invert padding*/
 }
 
+img {
+  vertical-align: top; /*removes white space below image */
+}
+
+@font-face {
+  font-family: "SoDo Sans";
+  src: url("../fonts/SoDoSans-Bold.eot");
+  src: local("SoDo Sans Bold"), local("SoDoSans-Bold"), url("../fonts/SoDoSans-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/SoDoSans-Bold.woff2") format("woff2"), url("../fonts/SoDoSans-Bold.woff") format("woff"), url("../fonts/SoDoSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SoDo Sans";
+  src: url("../fonts/SoDoSans-Regular.eot");
+  src: local("SoDo Sans Regular"), local("SoDoSans-Regular"), url("../fonts/SoDoSans-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/SoDoSans-Regular.woff2") format("woff2"), url("../fonts/SoDoSans-Regular.woff") format("woff"), url("../fonts/SoDoSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
-  background-color: #f94f1a;
-  font-family: Arial, Verdana, sans-serif;
+  background-color: white;
+  font-family: "SoDo Sans", Arial, sans-serif;
 } /*type "bc" for background color shortcut*/
+.btn {
+  font-family: "SoDo Sans", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+  border-radius: 100px;
+  border: 1px solid black;
+}
+.btn.btn--primary {
+  background-color: black;
+  color: white;
+}
+.btn.btn--secondary {
+  background-color: white;
+  color: black;
+}
+.btn.btn--text {
+  border-radius: 0;
+  border: 0;
+}
+.btn.btn--icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn.btn--icon svg {
+  width: 1rem;
+  height: auto;
+}
+.btn.btn--icon.btn--icon--left {
+  flex-direction: row-reverse;
+}
+.btn.btn--icon.btn--icon--right {
+  flex-direction: row;
+}
+
+/*creating own custome function-- see @include in h1*/
 .btn-ui {
   background-color: white;
   border: 0;
   padding: 1rem;
 }
-
 .btn-ui svg {
-  width: 3rem;
-  height: 3rem;
-  fill: var(--medium-gray);
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #006341;
 }
-
-#closeBtn {
+.btn-ui img {
+  width: 1.5rem;
+  height: auto;
+}
+@media (min-width: 980px) {
+  .btn-ui.btn--ui--menu {
+    display: none;
+  }
+}
+.btn-ui.btn--ui--close {
   position: absolute;
   top: 1rem;
   right: 1rem;
   background-color: transparent;
   border: 1px solid white;
 }
-
-#closeBtn svg {
+.btn-ui.btn--ui--close svg {
   fill: white;
 }
 
@@ -378,11 +444,49 @@ body {
   color: black;
 }
 
-/*creating own custome function-- see @include in h1*/
+.collection {
+  margin-top: 2rem;
+}
+.collection__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  font-family: "SoDo Sans", Arial, sans-serif;
+}
+.collection__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+@media (min-width: 700px) {
+  .collection__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 980px) {
+  .collection__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.collection__item {
+  margin-bottom: 1rem;
+}
+.collection__item__image {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+.collection__item__title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: black;
+  font-family: "SoDo Sans", Arial, sans-serif;
+}
+
 .container {
-  background-color: yellow;
   width: 100%;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 @media (min-width: 700px) {
   .container {
@@ -400,21 +504,25 @@ body {
   }
 }
 
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: black;
+}
+
 .logo {
   width: 5rem;
   height: auto;
 }
 
-.nav {
-  background-color: pink;
-}
 .nav__list {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 .nav__link {
-  font-family: Arial;
+  font-family: "SoDo Sans", Arial, sans-serif;
   font-weight: bold;
   text-decoration: none;
 }
@@ -430,17 +538,55 @@ body {
     display: block;
   }
 }
-.nav.nav--mobile {
-  background-color: blue;
+.nav.nav--utility {
+  display: none;
 }
-.nav.nav--social {
-  background-color: orange;
+@media (min-width: 980px) {
+  .nav.nav--utility {
+    display: block;
+  }
+}
+.nav.nav--mobile .nav__list {
+  display: flex;
+  flex-direction: column;
+}
+.nav.nav--mobile .nav__list .nav__link {
+  color: white;
+  font-size: 1.75rem;
+}
+.nav.nav--social .nav__list {
+  justify-content: center;
+}
+@media (min-width: 980px) {
+  .nav.nav--social .nav__list {
+    justify-content: flex-start;
+  }
 }
 .nav.nav--social .nav__link {
-  color: white;
+  background-color: white;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+.nav.nav--social .nav__link svg {
+  fill: #006341;
+  width: auto;
+  height: 1.5rem;
 }
 .nav.nav--footer {
-  background-color: red;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.nav.nav--footer .nav__list {
+  flex-direction: column;
+}
+@media (min-width: 980px) {
+  .nav.nav--footer .nav__list {
+    flex-direction: row;
+  }
 }
 .nav.nav--footer .nav__link {
   color: white;
@@ -461,7 +607,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /*align-items: center;*/
+  align-items: center;
   padding: 2rem;
 }
 .overlay .logo {
@@ -513,6 +659,65 @@ body {
 }
 .row.align-items-center {
   align-items: center;
+}
+
+.showcase {
+  margin-left: -1rem;
+  margin-right: -1rem;
+  position: relative;
+}
+@media (min-width: 980px) {
+  .showcase {
+    margin-top: 3rem;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.showcase__img {
+  width: 100%;
+  height: auto;
+}
+.showcase__text {
+  background-color: black;
+  color: white;
+  padding: 1.5rem;
+}
+@media (min-width: 980px) {
+  .showcase__text {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 50%;
+    border-left: 0.5rem solid #006341;
+  }
+}
+.showcase__title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "SoDo Sans", Arial, sans-serif;
+  margin-bottom: 1rem;
+}
+.showcase__discrip {
+  font-size: 1.25rem;
+  font-family: "SoDo Sans", Arial, sans-serif;
+}
+
+.select {
+  width: 6rem;
+  padding: 1rem;
+}
+
+footer {
+  background-color: #006341;
+  padding: 2rem 0;
+  color: white;
+  text-align: center;
+}
+@media (min-width: 980px) {
+  footer {
+    text-align: left;
+  }
 }
 
 header {

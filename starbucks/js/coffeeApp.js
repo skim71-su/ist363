@@ -5,13 +5,15 @@ const menuBtn = document.getElementById("menuBtn");
 const closeBtn = document.getElementById("closeBtn");
 const overlay = document.getElementById("overlay");
 
-const ascendingBtn = document.getElementById("ascendingBtn");
-const descendingBtn = document.getElementById("descendingBtn");
+//const ascendingBtn = document.getElementById("ascendingBtn");
+//const descendingBtn = document.getElementById("descendingBtn");
 const coffeeList = document.getElementById("coffeeList");
 const priceRanges = document.getElementById("priceRanges");
+const sortBtn = document.getElementById("sortBtn");
+//const sortBtnIcon = document.getElementById("sortBtnIcon");
 
 let filteredCoffees = [...coffees];
-let sortDirection = "ascending";
+let sortDirection = "descending";
 //2. function
 const purgeList = () => {
     coffeeList.innerHTML = "";
@@ -54,24 +56,25 @@ const displayList = (arr) => {
            const { title, price, description, image } = coffee; //converting to local variable
        //2. create the html elements
            const coffeeArticle = document.createElement("article");
-           coffeeArticle.classList.add("coffee-item");
+           coffeeArticle.classList.add("collection__item");
        
            const coffeeImage = document.createElement("img");
+           coffeeImage.classList.add("collection__item__image");
            coffeeImage.src = `images/${image.fileName}`;
            coffeeImage.width= image.width;
            coffeeImage.height=image.height;
            coffeeImage.alt=image.altText;
        
        
-           const coffeeTitle = buildTextElement("h2", "coffee-title", title);
-           const coffeePrice = buildTextElement("h3", "coffee-price", `$${price}`);
-           const coffeeDes = buildTextElement("p", "coffee-des", description );
+           const coffeeTitle = buildTextElement("h3", "collection__item__title", title);
+           //const coffeePrice = buildTextElement("h3", "coffee-price", `$${price}`);
+          // const coffeeDes = buildTextElement("p", "coffee-des", description );
        
        //append the elemetns to the parent article
            coffeeArticle.appendChild(coffeeImage);
            coffeeArticle.appendChild(coffeeTitle);
-           coffeeArticle.appendChild(coffeePrice);
-           coffeeArticle.appendChild(coffeeDes);
+        //   coffeeArticle.appendChild(coffeePrice);
+        //   coffeeArticle.appendChild(coffeeDes);
        //append the article to the body
            coffeeList.appendChild(coffeeArticle);
        }); // end of coffees forEach method - you can iterate using arrays
@@ -89,21 +92,38 @@ closeBtn.addEventListener("click", function() {
     overlay.classList.remove("active");
 }); //end of closeBtn click event
 
-ascendingBtn.addEventListener("click", function() {
-     console.log("ascending button has been clicked");
-     //purgeList();
-     const sortedList = sortListByDirect("ascending", filteredCoffees);
-    //console.log({sortedList})
+let isDescending = true;
+
+sortBtn.addEventListener("click", () => {
+    // ternary operator
+    isDescending = !isDescending;
+    let direction = isDescending ? "descending" : "ascending";
+    const sortedList = sortListByDirect(direction, filteredCoffees);
     displayList(sortedList);
+    //clear the sortBtn
+    sortBtn.innerHTML=""
+    //build the sortBtnIcon
+    const sortBtnIcon = document.createElement("img");
+    sortBtnIcon.src= `images/arrow-${direction}.svg`;
+    //append the sortBtnIcon button
+    sortBtn.appendChild(sortBtnIcon);
+   
 });
+//ascendingBtn.addEventListener("click", function() {
+ //    console.log("ascending button has been clicked");
+  //   //purgeList();
+ //    const sortedList = sortListByDirect("ascending", filteredCoffees);
+    //console.log({sortedList})
+ //   displayList(sortedList);
+//});
  
- descendingBtn.addEventListener("click", function() {
-     console.log("descending button has been clicked");
+ //descendingBtn.addEventListener("click", function() {
+ //    console.log("descending button has been clicked");
      //purgeList();
-     const sortedList = sortListByDirect("descending", filteredCoffees);
-     displayList(sortedList);
+ //    const sortedList = sortListByDirect("descending", filteredCoffees);
+ //    displayList(sortedList);
      //console.log({sortedList})
- });
+ //});
 
  priceRanges.addEventListener("change", (event) => {
     //console.log("price range has been changed");
